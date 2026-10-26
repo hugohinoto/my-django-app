@@ -2,10 +2,27 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>マイウェブサイト</title>
+    <title>マイショッピングサイト</title>
 </head>
 <body>
-    <h1>世界中からアクセス成功！</h1>
-    <p>自分で作ったDjangoとHTMLで動いています。</p>
+    <h1>🎁 本日の商品一覧</h1>
+    <hr>
+
+    {% if products %}
+        <!-- 商品がある場合は、1個ずつループして並べる -->
+        <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+            {% for product in products %}
+                <div style="border: 1px solid #ccc; padding: 15px; border-radius: 8px; width: 200px;">
+                    <h3>{{ product.name }}</h3>
+                    <p style="color: #e44d26; font-weight: bold;">価格: {{ product.price }}円</p>
+                    <p style="font-size: 14px; color: #666;">{{ product.description }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <!-- まだ商品が1個も登録されていない場合 -->
+        <p>現在、販売中の商品はありません。管理画面から登録してください！</p>
+    {% endif %}
+
 </body>
 </html>
